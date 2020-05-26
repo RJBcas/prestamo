@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-title>Iniciar sesión</mat-card-title>
+    <mat-card-content>
+        <form fxLayout="column" [formGroup]="login" autocomplete="disabled">
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+                <div class="input-row">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" placeholder="Email" formControlName="email">
+                        <mat-error *ngIf="emailFieldIsInvalid">Correo no valido</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field fxFlex>
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                    <mat-error *ngIf="passwordInvalid">Campo Requerido</mat-error>
+
+                </mat-form-field>
+            </div>
+
+
+
+        </form>
+
+    </mat-card-content>
+    <section>
+        <div class="example-button-row">
+            <button mat-raised-button color="warn" [routerLink]="['/createAccount']">Registrarse</button>
+            <button mat-raised-button (click)="sesion(login.value)" [disabled]="login.invalid" color="accent">Iniciar sesion</button>
+        </div>
+    </section>
+</mat-card>

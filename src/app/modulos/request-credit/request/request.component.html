@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-title>Solicitar Crédito</mat-card-title>
+    <mat-card-content>
+        <form fxLayout="column" [formGroup]="requestForm" autocomplete="new-form">
+
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+
+                <mat-slider ([ngModel])="mount" thumbLabel [displayWith]="formatLabel" [step]="interval" min="{{mountMin}}" max="{{mountMax}}" (input)="mount = cambiarValorSlider($event)"></mat-slider>
+            </div>
+
+            <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+
+                <mat-form-field>
+                    <mat-label>Fecha a pagar</mat-label>
+                    <input matInput [min]="minDate" [matDatepicker]="picker1" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+
+
+                </mat-form-field>
+            </div>
+
+        </form>
+
+    </mat-card-content>
+    <section>
+        <div class="example-button-row">
+            <button mat-raised-button (click)="cancelar()" color="warn">Cancelar</button>
+            <button mat-raised-button (click)="solicitar(requestForm.value)" [disabled]="requestForm.invalid" color="accent">Solicitar Crédito</button>
+        </div>
+    </section>
+</mat-card>

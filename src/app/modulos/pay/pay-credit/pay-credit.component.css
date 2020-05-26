@@ -1,0 +1,65 @@
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+}
+
+.mat-form-field {
+    width: 90%;
+    min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+section {
+    display: table;
+    margin: 8px;
+}
+
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    width: 120px;
+}
+
+.example-button-row {
+    display: table-cell;
+}
+
+.example-button-row button {
+    display: table-cell;
+    margin-right: 8px;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    width: 480px;
+}
+
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.example-card {
+    max-width: 400px;
+}
