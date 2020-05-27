@@ -9,9 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class SignUpService {
   constructor(private http: HttpClient) {}
-  signUp(signUpForm: SignUpForm): Observable<User> {
-    return this.http.get<User>(
-      'http://www.mocky.io/v2/5ecb64d03000004e00ddd5c2'
+  signUp(signUpForm: SignUpForm): Observable<any> {
+    console.log('holaa desde crear cuenta')
+    return this.http.post<any>(
+      'http://localhost:3000/api/user/createUser',
+      signUpForm
     );
+
   }
 }

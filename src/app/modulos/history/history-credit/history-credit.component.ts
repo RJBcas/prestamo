@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import { ComunesService } from '../../../services/comunes.service';
+
+
 
 
 export interface PeriodicElement {
@@ -20,27 +23,23 @@ export interface PeriodicElement {
 })
 export class HistoryCreditComponent implements OnInit {
 
-  constructor() {
+  users: any;
+  mon: any;
+  constructor( private comun: ComunesService) {
 
+    this.comun.isUser.subscribe( res => {
+      this.users = res;
+    })
    }
 
   // tslint:disable-next-line: member-ordering
-  displayedColumns: string[] = [ 'expiresIn', 'status', 'paid', 'mount'];
+  displayedColumns: string[] = [ 'expiresIn', 'status', 'paid', 'mount', 'Pagar'];
   dataSource = new MatTableDataSource();
 
+
+
   ngOnInit(): void {
-    this.dataSource.data = [
-      { expiresIn: '2/12/2023', status: false, paid: false, mount: 0 },
-      { expiresIn: '2/12/2024', status: false, paid: false, mount: 0},
-      { expiresIn: '2/12/2025', status: false, paid: false, mount: 0},
-      { expiresIn: '2/12/2013', status: false, paid: false, mount: 0},
-      { expiresIn: '2/12/2003', status: false, paid: false, mount: 0},
-      { expiresIn: '2/12/2043', status: false, paid: false, mount: 0},
-      { expiresIn: '2/12/2073', status: true, paid: true, mount: 100000},
-      {expiresIn: '2/12/2010', status: true,  paid: false, mount: 10000},
-      {expiresIn: '2/12/2244', status: true,  paid: true, mount: 20000},
-      { expiresIn: '2/12/2060', status: false, paid: false, mount: 0},
-    ];
+    this.dataSource.data = this.users.credits;
   }
 
   applyFilter(event: Event) {

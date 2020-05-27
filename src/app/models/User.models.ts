@@ -16,9 +16,3 @@ export interface User {
   admin: boolean;
   credits?: Credit[];
 }
-
-export interface RequestCredit {
-  mount: number;
-  expiresIn: Date;
-  ci: string;
-}

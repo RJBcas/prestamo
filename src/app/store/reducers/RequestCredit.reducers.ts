@@ -1,22 +1,21 @@
 import { createReducer, on } from "@ngrx/store";
 import { RequestActions } from "../actions";
 import { HttpErrorResponse } from "@angular/common/http";
-
-import { RequestCredit } from '../../models/User.models';
+import { RequestCredit } from "../../models/Credict.models";
 
 export interface State {
   error?: HttpErrorResponse;
   isLoading: boolean;
-  requestCredit: RequestCredit
+  requestCredit: RequestCredit;
 }
 
 export const initialState: State = {
   isLoading: false,
   requestCredit: {
+    ci: "",
     mount: 0,
     expiresIn: new Date(),
-    ci: ''
-  }
+  },
 };
 
 export const reducer = createReducer(
@@ -26,8 +25,8 @@ export const reducer = createReducer(
     isLoading,
   })),
   on(RequestActions.storeRequestCredit, (state, requestCredit) => ({
-...state,
-requestCredit
+    ...state,
+    requestCredit,
   })),
   on(RequestActions.requestError, (state, error) => ({
     ...state,

@@ -3,8 +3,9 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import { switchMap, mergeMap, catchError, map } from "rxjs/operators";
 import { SignInService } from "../../services/sign-in.services";
-
-import { UserActions } from "../actions";
+import { Store } from "@ngrx/store";
+import { UserActions, CreditsActions } from "../actions";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class SignInEffect {
@@ -25,10 +26,11 @@ export class SignInEffect {
       ofType(UserActions.SignInPostForm),
       mergeMap((signInForm) =>
         this.signInService.signIn(signInForm).pipe(
-          switchMap((user) => [
+          switchMap(({ credits, ...user }) => [
             UserActions.signInLoading({
               isLoading: false,
             }),
+            CreditsActions.storeCredits({ credits }),
             UserActions.storeUser(user),
           ]),
           catchError(({ status, statusText }) =>
