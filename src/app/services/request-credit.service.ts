@@ -1,21 +1,25 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Credit } from '../models/User.models';
-import { RequestCredit } from "../models/User.models";
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Credit } from "../models/Credict.models";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class RequestCreditService {
-
   constructor(private http: HttpClient) {}
 
-  requestCredit(requestForm: RequestCredit): Observable<Credit> {
-    return this.http.get<Credit>(
-      'http://www.mocky.io/v2/5ecc79a5320000760023615d'
+  requestCredit(requestForm): Observable<any> {
+    return this.http.post<any>(
+      "http://localhost:3000/api/requestC/solicitar/",
+      requestForm
+    );
+  }
+
+  paidCredit(requestForm): Observable<any> {
+    return this.http.post<any>(
+      "http://localhost:3000/api/pagar/pagar/",
+      requestForm
     );
   }
 }
-
-

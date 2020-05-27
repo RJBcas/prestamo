@@ -24,8 +24,8 @@
             </div>
             <div class="input-row">
                 <mat-form-field fxFlex>
-                    <mat-label>Enter your password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" autocomplete="new-password" formControlName="password">
+                    <mat-label>Ingresa tu contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" autocomplete="new-password" formControlName="passaword">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>

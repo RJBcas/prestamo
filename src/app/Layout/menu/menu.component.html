@@ -7,12 +7,12 @@
             <span>Credito Ya!!</span>
             <span class="menu-spacer"></span>
             <div fxShow="true" fxHide.lt-md>
-                <a routerLink="createAccount" mat-button>Registrar</a>
-                <a routerLink="login" mat-button>Ingresar</a>
-
-                <a routerLink="requestC" mat-button>Solicitar</a>
-                <a routerLink="history" mat-button>Historial</a>
-                <app-fondos></app-fondos>
+                <a *ngIf="!logueado" routerLink="createAccount" mat-button>Registrar</a>
+                <a *ngIf="!logueado" routerLink="login" mat-button>Ingresar</a>
+                <a *ngIf="logueado" routerLink="requestC" mat-button>Solicitar</a>
+                <a *ngIf="logueado && userPaid" routerLink="pay" mat-button>Pagar</a>
+                <a *ngIf="logueado" (click)="verHistorial()" mat-button>Historial</a>
+                <app-fondos *ngIf="logueado && isAdmin"></app-fondos>
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
@@ -20,13 +20,15 @@
     <mat-sidenav-container fxFlexFill>
         <mat-sidenav #sidenav>
             <mat-nav-list>
-                <app-fondos></app-fondos>
+                <app-fondos *ngIf="logueado && isAdmin"></app-fondos>
                 <a (click)="sidenav.toggle()" mat-list-item>Cerrar</a>
-                <a routerLink="createAccount" mat-list-item>Registrar</a>
-                <a routerLink="login" mat-list-item>Ingresar</a>
+                <a *ngIf="!logueado" routerLink="createAccount" mat-list-item>Registrar</a>
+                <a *ngIf="!logueado" routerLink="login" mat-list-item>Ingresar</a>
 
-                <a routerLink="requestC" mat-list-item>Solicitar</a>
-                <a routerLink="history" mat-list-item>Historial</a>
+                <a *ngIf="logueado" routerLink="requestC" mat-list-item>Solicitar</a>
+                <a *ngIf="logueado && userPaid" routerLink="pay" mat-list-item>Pagar</a>
+
+                <a *ngIf="logueado" (click)="verHistorial()" mat-list-item>Historial</a>
             </mat-nav-list>
         </mat-sidenav>
 

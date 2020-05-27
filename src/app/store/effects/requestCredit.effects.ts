@@ -3,9 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import { switchMap, mergeMap, catchError, map } from "rxjs/operators";
 import { RequestCreditService } from "../../services/request-credit.service";
-
-import { RequestActions, UserActions } from "../actions";
-
+import { RequestActions, CreditsActions } from "../actions";
 
 @Injectable()
 export class RequestCreditEffects {
@@ -31,6 +29,7 @@ export class RequestCreditEffects {
               isLoading: false,
             }),
             RequestActions.storeRequestCredit(requestCredit),
+            CreditsActions.addCredit({ credit: requestCredit }),
           ]),
           catchError(({ status, statusText }) =>
             of(RequestActions.requestError({ status, statusText }))
@@ -42,7 +41,6 @@ export class RequestCreditEffects {
 
   constructor(
     private actions$: Actions,
-    // tslint:disable-next-line: no-shadowed-variable
     private RequestCreditService: RequestCreditService
   ) {}
 }
